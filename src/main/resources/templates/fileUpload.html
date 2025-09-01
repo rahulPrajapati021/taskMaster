@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Upload</title>
+
+    <!-- bootstrap cdn -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+    <style>
+      body {
+        background: #121212;
+        color: #e0e0e0;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      h1 {
+        font-weight: 600;
+      }
+
+      .card {
+        border: none;
+        border-radius: 1rem;
+        background: #1e1e1e;
+      }
+
+      .btn {
+        border-radius: 0.5rem;
+      }
+
+      .btn-primary {
+        background: linear-gradient(45deg, #007bff, #00bfff);
+        border: none;
+      }
+
+      .btn-primary:hover {
+        background: linear-gradient(45deg, #0056b3, #0099cc);
+      }
+
+      .btn-outline-light:hover {
+        background: #f8f9fa;
+        color: #121212;
+      }
+
+      .alert {
+        border-radius: 0.75rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container my-5">
+
+      <!-- Alerts -->
+      <div th:if="${message}" class="alert alert-success shadow-sm">
+        ✅ <span th:text="${message}"></span>
+      </div>
+      <div th:if="${error}" class="alert alert-danger shadow-sm">
+        ❌ <span th:text="${error}"></span>
+      </div>
+
+      <!-- Header -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>📌 Upload Excel File</h1>
+        <div>
+          <a th:href="@{/allTasks}" class="btn btn-outline-light me-2">📂 All Tasks</a>
+          <a th:href="@{/}" class="btn btn-outline-light">📅 Today’s Tasks</a>
+        </div>
+      </div>
+
+      <!-- File Upload Card -->
+      <div class="card shadow-lg p-4">
+        <form
+          th:action="@{/tasks/fileUpload}"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <div class="mb-3">
+            <label for="file" class="form-label text-light">📄 Choose Excel File</label>
+            <input type="file" id="file" name="file" class="form-control bg-dark text-light border-light" required />
+          </div>
+
+          <div class="mb-3">
+            <span class="text-light">📥 Download Sample File: </span>
+            <a href="/SampleFile.xlsx" class="link-info">Here</a>
+          </div>
+
+          <div class="text-end">
+            <button type="submit" class="btn btn-primary px-4">⬆ Upload</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </body>
+</html>

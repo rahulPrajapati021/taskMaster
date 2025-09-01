@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Today Task List</title>
+
+    <!-- bootstrap cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+          crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"></script>
+</head>
+<body class="bg-dark text-light">
+
+<div class="container my-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>📌 Today’s Task List</h1>
+        <!-- Button to All Tasks Page -->
+        <a th:href="@{/allTasks}" class="btn btn-outline-light">📂 View All Tasks</a>
+    </div>
+
+    <!-- Add Task Form -->
+    <div class="card mb-4 bg-secondary text-light shadow-sm">
+        <div class="card-body">
+            <form th:action="@{/tasks/add}" method="post" class="row g-3">
+                <div class="col-md-8">
+                    <input type="text" name="content" class="form-control bg-dark text-light border-light"
+                           placeholder="Enter new task..." required>
+                </div>
+                <div class="col-md-4 text-end">
+                    <button type="submit" class="btn btn-primary">+ Add Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Task List -->
+    <div th:if="${tasks.empty}" class="alert alert-info bg-dark border-light text-center text-light">
+        🎉 No tasks pending today!
+    </div>
+
+    <table th:unless="${tasks.empty}" class="table table-dark table-hover shadow-sm align-middle">
+        <thead class="table-light text-dark">
+        <tr>
+            <th>#</th>
+            <th>Content</th>
+            <th>Status</th>
+            <th class="text-center">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="task,iterStat : ${tasks}">
+            <td th:text="${iterStat.count}"></td>
+            <td th:text="${task.content}"></td>
+            <td>
+                <span th:if="${!task.isDone}" class="badge bg-warning text-dark">Pending</span>
+                <span th:if="${task.isDone}" class="badge bg-success">Done</span>
+            </td>
+            <td class="text-center">
+                <!-- Toggle status -->
+                <form th:action="@{/tasks/toggleStatus/{id}(id=${task.id})}" method="post" class="d-inline">
+                    <button type="submit"
+                            th:classappend="${task.isDone} ? 'btn btn-sm btn-secondary' : 'btn btn-sm btn-success'">
+                        <span th:text="${task.isDone} ? 'Mark Pending' : 'Mark Done'"></span>
+                    </button>
+                </form>
+                <!-- Delete task -->
+                <form th:action="@{/tasks/delete/{id}(id=${task.id})}" method="post" class="d-inline">
+                    <button type="submit" class="btn btn-sm btn-danger ms-2">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>
