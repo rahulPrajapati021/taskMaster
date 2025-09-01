@@ -16,7 +16,7 @@ public class Task {
     private long id;
     private String content;
     private LocalDate date;
-    private boolean isDone;
+    private boolean isDone = false;
     public long getId() {
         return id;
     }

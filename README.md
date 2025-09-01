@@ -22,16 +22,16 @@ We should set it as default page for our browsers.
         * TaskController.java
     * models/
         * Task.java
-    * repos
+    * repos/
         * TaskRepo.java
-    * services
+    * services/
         * TaskService.java
     * TaskMasterApplication.java
 
 * src/resources/
     * static/
         * SampleFile.xlsx
-    * templates
+    * templates/
         * allTasks.html
         * fileUpload.html
         * index.html
