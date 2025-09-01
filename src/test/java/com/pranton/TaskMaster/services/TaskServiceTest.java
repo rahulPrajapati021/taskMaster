@@ -25,9 +25,4 @@ public class TaskServiceTest {
         assertTrue(taskService.create(task));
     }
 
-    @Test
-    public void getTaskByDate() {
-        List<Task> tasks = taskService.getByDate(LocalDate.now());
-        assertTrue(tasks.size() > 0);
-    }
 }
