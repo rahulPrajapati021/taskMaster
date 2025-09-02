@@ -93,12 +93,14 @@ public class TaskController {
             }
             String content = dataFormatter.formatCellValue(row.getCell(1));
             String dateString = dataFormatter.formatCellValue(row.getCell(2));
+            String link = dataFormatter.formatCellValue(row.getCell(3));
             DateTimeFormatter pattern = DateTimeFormatter.ofPattern("M/d/yy");
             LocalDate date = LocalDate.parse(dateString, pattern);
             Task task = new Task();
             task.setContent(content);
             task.setDate(date);
             task.setDone(false);
+            task.setLink(link);
             taskService.create(task);
             insertedCount++;
         }

@@ -16,6 +16,13 @@ public class Task {
     private long id;
     private String content;
     private LocalDate date;
+    private String link;
+    public String getLink() {
+        return link;
+    }
+    public void setLink(String link) {
+        this.link = link;
+    }
     private boolean isDone = false;
     public long getId() {
         return id;
