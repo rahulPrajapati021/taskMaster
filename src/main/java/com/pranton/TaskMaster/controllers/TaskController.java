@@ -41,6 +41,7 @@ public class TaskController {
         taskService.create(task);
         return "redirect:" + referer;
     }
+    
     @PostMapping("/toggleStatus/{id}")
     public String toggleStatus(HttpServletRequest request, @PathVariable long id) {
         String referer = request.getHeader("Referer");
@@ -55,6 +56,7 @@ public class TaskController {
         }
         return "redirect:" + referer;
     }
+    
     @PostMapping("/delete/{id}")
     public String deleteTask(HttpServletRequest request, @PathVariable long id) {
         String referer = request.getHeader("Referer");

@@ -16,7 +16,7 @@ We should set it as default page for our browsers.
 
 ### File Structure 
 
-* src/main/java/com/pranton/TaskMaster
+* src/main/java/com/pranton/TaskMaster/
     * controllers/
         * MainController.java
         * TaskController.java
@@ -35,3 +35,16 @@ We should set it as default page for our browsers.
         * allTasks.html
         * fileUpload.html
         * index.html
+
+### Available Routes
+
+* /tasks
+    * /add - Post - *add new tasks manually*
+    * /toggleStatus/{id} - Post - *update status of task to done*
+    * /delete/{id} - Post - *delete the task*
+    * /fileUpload - Post - Multipart/form-data *upload a file to import multiple tasks at once*
+
+* /
+    * / - Get - Today Tasks List Page
+    * /allTasks - Get - All Tasks List Page
+    * /fileUpload - Get - File Upload Page
