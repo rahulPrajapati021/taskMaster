@@ -58,7 +58,7 @@
             <td th:text="${iterStat.count}"></td>
             <td th:text="${task.content}"></td>
             <td>
-                <a th:href="${task.link}">Link</a>
+                <a target="_blank" th:href="${task.link}">Link</a>
             </td>
             <td>
                 <span th:if="${!task.isDone}" class="badge bg-warning text-dark">Pending</span>
