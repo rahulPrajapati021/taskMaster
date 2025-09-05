@@ -48,3 +48,5 @@ We should set it as default page for our browsers.
     * / - Get - Today Tasks List Page
     * /allTasks - Get - All Tasks List Page
     * /fileUpload - Get - File Upload Page
+
+### Info -
